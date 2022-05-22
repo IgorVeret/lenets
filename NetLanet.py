@@ -4,23 +4,29 @@ import torchvision.transforms as transforms
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
+
+# Метод предварительной обработки изображения в переменную
 transform = transforms.Compose([transforms.ToTensor(),
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 batch_size = 4
-# После скачивания и распаковки Меняем на  download=False. Скачивается в текущую папку.
+# После скачивания CIFAR10 и распаковки Меняем на  download=False. Скачивается в текущую папку.
 trainset = torchvision.datasets.CIFAR10(root='./data', train=True,
                                         download=True, transform=transform)
+
+# Функция импортируется в первоначальное обучение, делится на порции,
+# каждая партия по 4 фотографий для обучения batch_size = 4
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size,
                                           shuffle=True, num_workers=4)
 
 testset = torchvision.datasets.CIFAR10(root='./data', train=False,
                                        download=True, transform=transform)
+#Для расчета точности тестового набора
 testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size,
                                          shuffle=False, num_workers=4)
 
 classes = ('plane', 'car', 'bird', 'cat',
            'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
-# Сертчная сеть Lanet
+# Сеть Lanet
 class Lenet(nn.Module):
     def __init__(self):
         super().__init__()
@@ -64,7 +70,7 @@ if __name__ == '__main__':
             if i % 2000 == 1999:
                 print(f'[{epoch + 1}, {i + 1:5d}] Потери: {running_loss / 2000:.3f}')
                 running_loss = 0.0
-    print('Обучение закончено') #результат тренировки
+    print('Обучение закончено')
     #---------------------------------------------------------------------------------
 
     PATH = './result.pt'    # Сохраняем результат обучения в текущую папку
@@ -79,7 +85,7 @@ if __name__ == '__main__':
             images, labels = data
             outputs = net(images)
             _, predictions = torch.max(outputs, 1)
-            # collect the correct predictions for each class
+            # Собрать правильные прогнозы для каждого класса
             for label, prediction in zip(labels, predictions):
                 if label == prediction:
                     correct_pred[classes[label]] += 1
@@ -89,5 +95,19 @@ if __name__ == '__main__':
     for classname, correct_count in correct_pred.items():
         accuracy = 100 * float(correct_count) / total_pred[classname]
         print(f'Точность для класса: {classname:5s} составляет {accuracy:.1f} %')
+#----------------------------------------------------------------------------------
+    # Оценить точность
+    correct = 0
+    total = 0
 
+    with torch.no_grad():
+        for data in testloader:
+            images, labels = data
+            # Рассчитать выходные данные, пропустив изображения через сеть
+            outputs = net(images)
+            # Выбор в качестве прогноза
+            _, predicted = torch.max(outputs.data, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
 
+    print(f'Точность сети на 10000 тестовых изображений: {100 * correct // total} %')
