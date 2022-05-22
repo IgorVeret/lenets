@@ -8,6 +8,7 @@
 
 1. https://russianblogs.com/article/6343764825/
 2. https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html
+3. https://www.youtube.com/watch?v=ixathu7U-LQ&ab_channel=sentdex
 ---------------------------------------------------------------------------------------
 Сысылка на репозиторий:
  https://github.com/IgorVeret/lenets.git
