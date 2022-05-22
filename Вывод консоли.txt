@@ -1,0 +1,54 @@
+E:\pythonProject2\Scripts\python.exe E:/pythonProject2/NetLanet.py
+Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz to ./data\cifar-10-python.tar.gz
+100.0%
+Extracting ./data\cifar-10-python.tar.gz to ./data
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+[1,  2000] loss: 2.181
+[1,  4000] loss: 1.840
+[1,  6000] loss: 1.664
+[1,  8000] loss: 1.576
+[1, 10000] loss: 1.524
+[1, 12000] loss: 1.467
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+[2,  2000] loss: 1.415
+[2,  4000] loss: 1.361
+[2,  6000] loss: 1.363
+[2,  8000] loss: 1.313
+[2, 10000] loss: 1.291
+[2, 12000] loss: 1.287
+Обучение закончено
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Точность для класса: plane составляет 69.0 %
+Точность для класса: car   составляет 78.5 %
+Точность для класса: bird  составляет 37.1 %
+Точность для класса: cat   составляет 40.5 %
+Точность для класса: deer  составляет 33.9 %
+Точность для класса: dog   составляет 51.2 %
+Точность для класса: frog  составляет 62.4 %
+Точность для класса: horse составляет 60.9 %
+Точность для класса: ship  составляет 64.6 %
+Точность для класса: truck составляет 60.0 %
+
+Process finished with exit code 0
